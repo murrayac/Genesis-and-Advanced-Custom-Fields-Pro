@@ -16,7 +16,7 @@ add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 
 ?>
 
-<!-- Add our custom loop -->
+<!-- Add our custom acf loop -->
 <?php add_action( 'genesis_entry_footer', 'acf_loop' ); ?>
 
 <?php function acf_loop() { ?>
@@ -198,24 +198,29 @@ add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 	     <!-- loop through the rows of data -->
 	    <?php while ( have_rows('flexible_content') ) : the_row(); ?>
 
+	    	<!-- button field -->
 	        <?php if( get_row_layout() == 'button' ): ?>
 
 	        	<a class="button" href="<?php the_sub_field('link'); ?>"><?php the_sub_field('text'); ?></a>
 
+			<!-- title field -->
 	        <?php elseif( get_row_layout() == 'title' ): ?>
 
 	        	<h2><?php the_sub_field('title'); ?></h2>
 
+			<!-- category titles -->
 	        <?php elseif( get_row_layout() == 'category_titles'): ?>
 
 	        	<h2><?php the_sub_field('category_title'); ?></h2>
 
+			<!-- column full width -->
         	<?php elseif( get_row_layout() == 'column_whole' ): ?>
         		
         		<div class="acf-columns">
         			<?php the_sub_field('whole'); ?>
     			</div>
 
+			<!-- column halfs -->
 			<?php elseif( get_row_layout() == 'columns_half_half' ): ?>
 
         		<div class="acf-columns">
@@ -223,6 +228,7 @@ add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 	        		<div class="one-half"><?php the_sub_field('half_last'); ?></div>
         		</div>
 
+			<!-- columns one third, two thirds -->
         	<?php elseif( get_row_layout() == 'columns_one_third_two_thirds' ): ?>
 
         		<div class="acf-columns">
@@ -230,6 +236,7 @@ add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 	        		<div class="two-thirds"><?php the_sub_field('two_thirds'); ?></div>
         		</div>
 
+			<!-- columns two thirds, one third -->
         	<?php elseif( get_row_layout() == 'columns_two_thirds_one_third' ): ?>
 
         		<div class="acf-columns">
@@ -237,6 +244,7 @@ add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 	        		<div class="one-third"><?php the_sub_field('one_third'); ?></div>
         		</div>
         		
+        	<!-- columns thirds -->
         	<?php elseif( get_row_layout() == 'columns_one_third_one_third_one_third' ): ?>
 
         		<div class="acf-columns">
@@ -245,6 +253,7 @@ add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 	        		<div class="one-third"><?php the_sub_field('one_third_last'); ?></div>
         		</div>
 
+			<!-- google map (two thirds), content area (one third) -->
         	<?php elseif( get_row_layout() == 'google_map_content' ): ?>
 
         		<div class="acf-columns">
@@ -264,6 +273,7 @@ add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 	        		<div class="one-third"><?php the_sub_field('map_content'); ?></div>
 	    		</div>
 
+			<!-- content area (one third), google map (two thirds) -->
         	<?php elseif( get_row_layout() == 'google_content_map' ): ?>
 
         		<div class="acf-columns">
@@ -299,5 +309,3 @@ add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
 
 //* Run the Genesis loop
 genesis();
-
-
